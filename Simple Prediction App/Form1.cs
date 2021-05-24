@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -32,11 +26,11 @@ namespace Simple_Prediction_App
 
             try
             {
-                var data = File.ReadAllText(predictionsFile,Encoding.UTF8);
+                var data = File.ReadAllText(predictionsFile, Encoding.UTF8);
                 predictions = JsonConvert.DeserializeObject<string[]>(data);
                 MessageBox.Show($"{predictions.Length}");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -49,7 +43,7 @@ namespace Simple_Prediction_App
                 else if (predictions.Length == 0)
                 {
                     MessageBox.Show("No Predictions");
-                    
+
                 }
             }
         }
@@ -57,18 +51,6 @@ namespace Simple_Prediction_App
         private async void button1_Click(object sender, EventArgs e)
         {
             bPredict.Enabled = false;
-            /* await Task.Run(() =>
-              {
-                  for (int i = 0; i <= progressBar1.Maximum; i++)
-                  {
-                      this.Invoke(new Action(() =>
-                     {
-                         UpdateProgressBar(i);
-                         this.Text = $"{i}%";
-                     }));
-                     Thread.Sleep(40);
-                  }
-              });*/
             for (int i = 0; i <= progressBar1.Maximum; i++)
             {
                 this.Invoke(new Action(() =>
